@@ -1,30 +1,41 @@
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.Geolocation;
 import com.microsoft.playwright.options.Proxy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyBrowser {
 
 
-    private final static String twitter = "https://twitter.com/wangzhian8848";
+//    private final static String twitter = "https://mobile.twitter.com/FrankQin99";
+    private final static String twitter = "https://www.twitter.com/q1ngyang";
 
     public void createBrowser(){
         System.out.println("程序开始");
         try (Playwright playwright = Playwright.create()) {
             System.out.println("环境准备完成");
             BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
-            launchOptions.setProxy(new Proxy("http://127.0.0.1:7890"));
+            launchOptions.setProxy(new Proxy("socks5://127.0.0.1:40276"));
+//            launchOptions.setProxy(new Proxy("http://127.0.0.1:7890"));
             launchOptions.setHeadless(false);
-            launchOptions.setTimeout(600000).setSlowMo(1000);
+            launchOptions.setTimeout(600000);
+            List<String> args = new ArrayList<>();
+            args.add("--lang=en-US");
+            launchOptions.setArgs(args);
             Browser browser = playwright.chromium().launch(launchOptions);
+//            Browser browser = playwright.webkit().launch(launchOptions);
             System.out.println("创建浏览器完成");
             System.out.println(browser.isConnected());
             BrowserContext browserContext = browser.newContext();
+            browserContext.setGeolocation(new Geolocation(38.34, 121.29));
             Page page = browserContext.newPage();
             System.out.println(browser.isConnected());
             browser.onDisconnected((a) -> System.out.println("浏览器关闭回调"));
-            page.navigate("https://twitter.com/login");
+            page.navigate(twitter);
             System.out.println("点击");
             try {
-                Thread.sleep(5000);
+                Thread.sleep(30000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -102,11 +113,12 @@ public class MyBrowser {
             BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
             launchOptions.setProxy(new Proxy("http://127.0.0.1:7890"));
             launchOptions.setHeadless(false);
-            launchOptions.setTimeout(600000).setSlowMo(1000);
+            launchOptions.setTimeout(600000);
             Browser browser = playwright.chromium().launch(launchOptions);
             System.out.println("创建浏览器完成");
             System.out.println(browser.isConnected());
             BrowserContext browserContext = browser.newContext();
+            browserContext.setGeolocation(new Geolocation(38.34, 121.29));
             Page page = browserContext.newPage();
             System.out.println(browser.isConnected());
             browser.onDisconnected((a) -> System.out.println("浏览器关闭回调"));
@@ -129,8 +141,9 @@ public class MyBrowser {
 
     public static void main(String[] args) {
         MyBrowser myBrowser = new MyBrowser();
-        myBrowser.evalOnSelector();
+//        myBrowser.evalOnSelector();
 //        myBrowser.loginTwitter();
+        myBrowser.createBrowser();
 
     }
 
