@@ -9,14 +9,27 @@ public class MyBrowser {
 
 
 //    private final static String twitter = "https://mobile.twitter.com/FrankQin99";
-    private final static String twitter = "https://www.twitter.com/q1ngyang";
+    private final static String kakao = "https://story.kakao.com/";
+    private final static String reddit = "https://www.reddit.com/";
+    private final static String mixi = "https://mixi.jp";
+    private final static String twitter = "https://www.twitter.com";
+    private final static String youtube = "https://www.youtube.com/";
 
-    public void createBrowser(){
+
+    public static void main(String[] args) {
+        MyBrowser myBrowser = new MyBrowser();
+//        myBrowser.evalOnSelector();
+//        myBrowser.loginTwitter();
+        myBrowser.createBrowser("https://www.youtube.com", "socks5://127.0.0.1:57103");
+
+    }
+
+    public void createBrowser(String url, String proxy){
         System.out.println("程序开始");
         try (Playwright playwright = Playwright.create()) {
             System.out.println("环境准备完成");
             BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
-            launchOptions.setProxy(new Proxy("socks5://127.0.0.1:40276"));
+            launchOptions.setProxy(new Proxy(proxy));
 //            launchOptions.setProxy(new Proxy("http://127.0.0.1:7890"));
             launchOptions.setHeadless(false);
             launchOptions.setTimeout(600000);
@@ -32,14 +45,15 @@ public class MyBrowser {
             Page page = browserContext.newPage();
             System.out.println(browser.isConnected());
             browser.onDisconnected((a) -> System.out.println("浏览器关闭回调"));
-            page.navigate(twitter);
+            page.setDefaultTimeout(100*1000);
+            page.navigate(url);
             System.out.println("点击");
+            System.out.println(page.title());
             try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(page.title());
             browser.close();
 //            page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("example.png")));
         }
@@ -139,13 +153,7 @@ public class MyBrowser {
 
     }
 
-    public static void main(String[] args) {
-        MyBrowser myBrowser = new MyBrowser();
-//        myBrowser.evalOnSelector();
-//        myBrowser.loginTwitter();
-        myBrowser.createBrowser();
 
-    }
 
 
 
