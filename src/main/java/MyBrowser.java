@@ -1,6 +1,7 @@
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.Geolocation;
 import com.microsoft.playwright.options.Proxy;
+import enume.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class MyBrowser {
         MyBrowser myBrowser = new MyBrowser();
 //        myBrowser.evalOnSelector();
 //        myBrowser.loginTwitter();
-        myBrowser.createBrowser("https://www.youtube.com", "socks5://127.0.0.1:57103");
+        myBrowser.createBrowser(Platform.pinterest.getUrl(), "socks5://127.0.0.1:60371");
 
     }
 
@@ -50,7 +51,7 @@ public class MyBrowser {
             System.out.println("点击");
             System.out.println(page.title());
             try {
-                Thread.sleep(30000);
+                Thread.sleep(3000000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
