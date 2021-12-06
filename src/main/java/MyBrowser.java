@@ -18,10 +18,14 @@ public class MyBrowser {
 
 
     public static void main(String[] args) {
+
+//        DigestUtils.md5Hex(str);
+
         MyBrowser myBrowser = new MyBrowser();
 //        myBrowser.evalOnSelector();
 //        myBrowser.loginTwitter();
-        myBrowser.createBrowser(Platform.pinterest.getUrl(), "socks5://127.0.0.1:60371");
+        myBrowser.createBrowser(Platform.twitter.getUrl(), "http://127.0.0.1:7890");
+//        myBrowser.createBrowser(Platform.discuss.getUrl(), "socks5://127.0.0.1:23946");
 
     }
 

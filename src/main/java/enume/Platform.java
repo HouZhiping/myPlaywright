@@ -7,7 +7,7 @@ public enum Platform {
     youtube("youtube", "https://www.youtube.com", "",""),
     instagram("instagram", "https://www.instagram.com", "",""),
     linkedin("linkedin", "https://www.linkedin.com", "",""),
-    pinterest("pinterest", "https://www.pinterest.com", "",""),
+    pinterest("pinterest", "https://www.pinterest.com", "657244927@qq.com","hzp199005023"),
     ptt("ptt", "https://term.ptt.cc", "",""),
     eyny("eyny", "http://www.eyny.com", "",""),
     yam("yam","http://n.yam.com", "",""),
@@ -76,5 +76,7 @@ public enum Platform {
         this.password = password;
 
     }
+
+
 
 }
