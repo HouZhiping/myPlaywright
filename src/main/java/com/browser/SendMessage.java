@@ -27,7 +27,7 @@ public class SendMessage {
             System.out.println("环境准备完成");
             BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
             launchOptions.setProxy(new Proxy(proxy));
-//            launchOptions.setProxy(new Proxy("http://127.0.0.1:7890"));
+            launchOptions.setProxy(new Proxy("socks5://172.16.102.245:3026"));
             launchOptions.setHeadless(false);
             launchOptions.setTimeout(600000);
             List<String> args = new ArrayList<>();

@@ -24,7 +24,8 @@ public class MyBrowser {
         MyBrowser myBrowser = new MyBrowser();
 //        myBrowser.evalOnSelector();
 //        myBrowser.loginTwitter();
-        myBrowser.createBrowser(Platform.twitter.getUrl(), "http://127.0.0.1:7890");
+//        myBrowser.createBrowser(Platform.twitter.getUrl(), "socks5://172.16.102.245:3062");
+        myBrowser.createBrowser("https://ip.skk.moe/", "socks5://172.16.102.245:5130");
 //        myBrowser.createBrowser(Platform.discuss.getUrl(), "socks5://127.0.0.1:23946");
 
     }
